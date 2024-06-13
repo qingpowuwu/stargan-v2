@@ -60,7 +60,9 @@ After downloading the pre-trained networks, you can synthesize output images ref
 
 
 <b>CelebA-HQ.</b> To generate images and interpolation videos, run the following command:
+
 ```bash
+# celeba_hq
 python main.py --mode sample --num_domains 2 --resume_iter 100000 --w_hpf 1 \
                --checkpoint_dir expr/checkpoints/celeba_hq \
                --result_dir expr/results/celeba_hq \
@@ -82,6 +84,8 @@ python main.py --mode align \
 
 <b>AFHQ.</b> To generate images and interpolation videos, run the following command:
 ```bash
+
+# afhq
 python main.py --mode sample --num_domains 3 --resume_iter 100000 --w_hpf 0 \
                --checkpoint_dir expr/checkpoints/afhq \
                --result_dir expr/results/afhq \
@@ -90,6 +94,17 @@ python main.py --mode sample --num_domains 3 --resume_iter 100000 --w_hpf 0 \
 ```
 
 <p align="left"><img width="99%" src="assets/afhq_interpolation.gif" /></p>
+
+
+```bash
+
+# celeba_hq
+python main.py --mode sample --num_domains 2 --resume_iter 100000 --w_hpf 1 \
+               --checkpoint_dir expr/checkpoints/cataract \
+               --result_dir expr/results/cataract \
+               --src_dir assets/representative/cataract/src \
+               --ref_dir assets/representative/cataract/ref
+```
 
 ## Evaluation metrics
 To evaluate StarGAN v2 using [Fr&eacute;chet Inception Distance (FID)](https://arxiv.org/abs/1706.08500) and [Learned Perceptual Image Patch Similarity (LPIPS)](https://arxiv.org/abs/1801.03924), run the following commands:
@@ -137,6 +152,19 @@ python main.py --mode train --num_domains 3 --w_hpf 0 \
                --lambda_reg 1 --lambda_sty 1 --lambda_ds 2 --lambda_cyc 1 \
                --train_img_dir data/afhq/train \
                --val_img_dir data/afhq/val
+
+# cataract
+python main.py --mode train --num_domains 2 --w_hpf 0 \
+               --lambda_reg 1 --lambda_sty 1 --lambda_ds 1 --lambda_cyc 1 \
+               --train_img_dir data/cataract/train \
+               --val_img_dir data/cataract/val --ds_iter 10000 \
+               --src_dir assets/representative/cataract/src \
+               --ref_dir assets/representative/cataract/ref \
+               --inp_dir assets/representative/cataract/inp \
+               --out_dir assets/representative/cataract/out \
+               --sample_every 1000 \
+               --save_every 3000 \
+               --eval_every 1000 \
 ```
 
 ## Animal Faces-HQ dataset (AFHQ)
@@ -167,25 +195,3 @@ bash download.sh afhq-v2-dataset
 <p align="left"><img width="99%" src="assets/afhqv2_teaser2.jpg" /></p>
 
 
-
-## License
-The source code, pre-trained models, and dataset are available under [Creative Commons BY-NC 4.0](https://github.com/clovaai/stargan-v2/blob/master/LICENSE) license by NAVER Corporation. You can **use, copy, tranform and build upon** the material for **non-commercial purposes** as long as you give **appropriate credit** by citing our paper, and indicate if changes were made. 
-
-For business inquiries, please contact clova-jobs@navercorp.com.<br/>	
-For technical and other inquires, please contact yunjey.choi@navercorp.com.
-
-
-## Citation
-If you find this work useful for your research, please cite our paper:
-
-```
-@inproceedings{choi2020starganv2,
-  title={StarGAN v2: Diverse Image Synthesis for Multiple Domains},
-  author={Yunjey Choi and Youngjung Uh and Jaejun Yoo and Jung-Woo Ha},
-  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-  year={2020}
-}
-```
-
-## Acknowledgements
-We would like to thank the full-time and visiting Clova AI Research (now NAVER AI Lab) members for their valuable feedback and an early review: especially Seongjoon Oh, Junsuk Choe, Muhammad Ferjad Naeem, and Kyungjune Baek. We also thank Alias-Free GAN authors for their contribution to the updated AFHQ dataset.
