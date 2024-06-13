@@ -162,9 +162,11 @@ python main.py --mode train --num_domains 2 --w_hpf 0 \
                --ref_dir assets/representative/cataract/ref \
                --inp_dir assets/representative/cataract/inp \
                --out_dir assets/representative/cataract/out \
+               --sample_dir expr/samples/cataract \
                --sample_every 1000 \
-               --save_every 3000 \
+               --save_every 2000 \
                --eval_every 1000 \
+               --batch_size 16 
 ```
 
 ## Animal Faces-HQ dataset (AFHQ)
