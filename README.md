@@ -154,6 +154,20 @@ python main.py --mode train --num_domains 3 --w_hpf 0 \
                --val_img_dir data/afhq/val
 
 # cataract
+CUDA_VISIBLE_DEVICES=1 python main.py --mode train --num_domains 2 --w_hpf 0 \
+               --lambda_reg 1 --lambda_sty 1 --lambda_ds 1 --lambda_cyc 1 \
+               --train_img_dir data/cataract/train \
+               --val_img_dir data/cataract/val --ds_iter 10000 \
+               --src_dir assets/representative/cataract/src \
+               --ref_dir assets/representative/cataract/ref \
+               --inp_dir assets/representative/cataract/inp \
+               --out_dir assets/representative/cataract/out \
+               --sample_dir expr/samples/cataract \
+               --sample_every 20 \
+               --save_every 1000 \
+               --eval_every 1000 \
+               --batch_size 8
+
 python main.py --mode train --num_domains 2 --w_hpf 0 \
                --lambda_reg 1 --lambda_sty 1 --lambda_ds 1 --lambda_cyc 1 \
                --train_img_dir data/cataract/train \
@@ -163,10 +177,11 @@ python main.py --mode train --num_domains 2 --w_hpf 0 \
                --inp_dir assets/representative/cataract/inp \
                --out_dir assets/representative/cataract/out \
                --sample_dir expr/samples/cataract \
-               --sample_every 1000 \
-               --save_every 2000 \
+               --sample_every 20 \
+               --save_every 1000 \
                --eval_every 1000 \
-               --batch_size 16 
+               --batch_size 8 \
+               --val_batch_size 8 # 这2个 batch_size 大小必须一样不然回报错
 ```
 
 ## Animal Faces-HQ dataset (AFHQ)
